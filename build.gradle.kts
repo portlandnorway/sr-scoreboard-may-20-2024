@@ -1,14 +1,17 @@
 plugins {
-    kotlin("jvm") version "1.9.0"
-    application
+  kotlin("jvm") version "1.9.0"
+  application
 }
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
+  implementation(kotlin("stdlib"))
   testImplementation(kotlin("test"))
+  testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
 }
 
 tasks.test {
@@ -16,7 +19,7 @@ tasks.test {
 }
 
 kotlin {
-  jvmToolchain(8)
+  jvmToolchain(17)
 }
 
 application {
@@ -35,3 +38,4 @@ sourceSets {
     }
   }
 }
+
