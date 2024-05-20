@@ -83,26 +83,26 @@ class ScoreBoardUnitTest {
     }
     assertEquals("Match is already finished", exception.message)
   }
-//
-//  @Test
-//  fun `should get scoreboard`() {
-//    val matchId1 = scoreboard.startMatch("Team A", "Team B")
-//    val matchId2 = scoreboard.startMatch("Team C", "Team D")
-//    scoreboard.updateScore(matchId1, 2, 1)
-//    scoreboard.updateScore(matchId2, 3, 2)
-//
-//    val summary = scoreboard.getScoreboard()
-//    assertEquals(2, summary.size)
-//
-//    assertEquals("Team C", summary[0].homeTeam)
-//    assertEquals(3, summary[0].homeScore)
-//    assertEquals("Team D", summary[0].awayTeam)
-//    assertEquals(2, summary[0].awayScore)
-//
-//    assertEquals("Team A", summary[1].homeTeam)
-//    assertEquals(2, summary[1].homeScore)
-//    assertEquals("Team B", summary[1].awayTeam)
-//    assertEquals(1, summary[1].awayScore)
-//  }
+
+  @Test
+  fun `should get scoreboard`() {
+    val matchId1 = scoreboard.startMatch("Team A", "Team B")
+    val matchId2 = scoreboard.startMatch("Team C", "Team D")
+    scoreboard.updateScore(matchId1, 2, 1)
+    scoreboard.updateScore(matchId2, 3, 2)
+
+    val scoreboard = scoreboard.getScoreboard()
+    assertEquals(2, scoreboard.size)
+
+    assertEquals("Team C", scoreboard[0].homeTeam)
+    assertEquals(3, scoreboard[0].homeScore)
+    assertEquals("Team D", scoreboard[0].awayTeam)
+    assertEquals(2, scoreboard[0].awayScore)
+
+    assertEquals("Team A", scoreboard[1].homeTeam)
+    assertEquals(2, scoreboard[1].homeScore)
+    assertEquals("Team B", scoreboard[1].awayTeam)
+    assertEquals(1, scoreboard[1].awayScore)
+  }
 
 }

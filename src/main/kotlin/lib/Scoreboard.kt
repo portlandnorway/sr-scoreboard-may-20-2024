@@ -44,7 +44,13 @@ class Scoreboard {
     return "Match finished: ${match.homeTeam} vs ${match.awayTeam}"
   }
 
-  fun getScoreboard() {
-
+  fun getScoreboard(): List<Match> {
+    val matches = activeMatches.values
+    return matches
+      .sortedWith(
+        compareByDescending<Match> { it.homeScore + it.awayScore }
+          .thenByDescending { it.startTime }
+      )
   }
+
 }
