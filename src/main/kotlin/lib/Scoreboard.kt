@@ -46,11 +46,18 @@ class Scoreboard {
 
   fun getScoreboard(): List<Match> {
     val matches = activeMatches.values
-    return matches
-      .sortedWith(
+    val sortedMatches = matches.sortedWith(
         compareByDescending<Match> { it.homeScore + it.awayScore }
           .thenByDescending { it.startTime }
       )
+    // If expectation is to return a printed output of:
+    // 1. Uruguay 6 - Italy 6
+    // 2. Spain 10 - Brazil 2
+    // 3. Mexico 0 - Canada 5
+    // 4. Argentina 3 - Australia 1
+    // 5. Germany 2 - France 2
+    // Then modify/join sortedMatches as a string and return
+    return sortedMatches
   }
 
 }
