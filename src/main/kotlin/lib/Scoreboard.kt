@@ -23,8 +23,14 @@ class Scoreboard {
     return match.id
   }
 
-  fun updateScore(matchId: UUID, homeScore: Int, awayScore: Int) {
-
+  fun updateScore(matchId: UUID, homeScore: Int, awayScore: Int): String {
+    val match = activeMatches[matchId] ?: throw NoSuchElementException("Match not found")
+    if (previousMatches.containsKey(matchId)) {
+      throw IllegalArgumentException("Match already finished")
+    }
+    match.homeScore = homeScore
+    match.awayScore = awayScore
+    return "Match updated: ${match.homeTeam} $homeScore - ${match.awayTeam} $awayScore"
   }
 
   fun finishMatch(matchId: UUID) {

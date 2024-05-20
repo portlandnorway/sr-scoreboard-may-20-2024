@@ -31,32 +31,32 @@ class ScoreBoardUnitTest {
     }
     assertEquals("Team A is already in a match", exception.message)
   }
-//
-//  @Test
-//  fun `should update match score successfully and return confirmation`() {
-//    val matchId = scoreboard.startMatch("Team A", "Team B")
-//    val updateMessage = scoreboard.updateScore(matchId, 1, 0)
-//    assertEquals("Match updated: Team A 1 - 0 Team B", updateMessage)
-//  }
-//
-//  @Test
-//  fun `should fail to update score if match does not exist`() {
-//    val nonExistentMatchId = UUID.randomUUID()
-//    val exception = assertThrows<NoSuchElementException> {
-//      scoreboard.updateScore(nonExistentMatchId, 0, 1)
-//    }
-//    assertEquals("Match does not exist", exception.message)
-//  }
-//
-//  @Test
-//  fun `should fail to update score if match is already completed`() {
-//    val completedMatchId = scoreboard.startMatch("Team A", "Team B")
-//    scoreboard.finishMatch(completedMatchId)
-//    val exception = assertThrows<IllegalArgumentException> {
-//      scoreboard.updateScore(completedMatchId, 1, 0)
-//    }
-//    assertEquals("Match already finished", exception.message)
-//  }
+
+  @Test
+  fun `should update match score successfully and return confirmation`() {
+    val matchId = scoreboard.startMatch("Team A", "Team B")
+    val updateMessage = scoreboard.updateScore(matchId, 1, 0)
+    assertEquals("Match updated: Team A 1 - Team B 0", updateMessage)
+  }
+
+  @Test
+  fun `should fail to update score if match not found`() {
+    val nonExistentMatchId = UUID.randomUUID()
+    val exception = assertThrows<NoSuchElementException> {
+      scoreboard.updateScore(nonExistentMatchId, 0, 1)
+    }
+    assertEquals("Match not found", exception.message)
+  }
+
+  @Test
+  fun `should fail to update score if match is already finished`() {
+    val completedMatchId = scoreboard.startMatch("Team A", "Team B")
+    scoreboard.finishMatch(completedMatchId)
+    val exception = assertThrows<IllegalArgumentException> {
+      scoreboard.updateScore(completedMatchId, 1, 0)
+    }
+    assertEquals("Match already finished", exception.message)
+  }
 //
 //  @Test
 //  fun `should finish match successfully and return confirmation`() {
