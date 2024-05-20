@@ -57,32 +57,32 @@ class ScoreBoardUnitTest {
     }
     assertEquals("Match already finished", exception.message)
   }
-//
-//  @Test
-//  fun `should finish match successfully and return confirmation`() {
-//    val matchId = scoreboard.startMatch("Team A", "Team B")
-//    val finishMessage = scoreboard.finishMatch(matchId)
-//    assertEquals("Match finished: Team A vs Team B", finishMessage)
-//  }
-//
-//  @Test
-//  fun `should fail to finish match if match does not exist`() {
-//    val nonExistentMatchId = UUID.randomUUID()
-//    val exception = assertThrows<NoSuchElementException> {
-//      scoreboard.finishMatch(nonExistentMatchId)
-//    }
-//    assertEquals("Match does not exist", exception.message)
-//  }
-//
-//  @Test
-//  fun `should fail to finish match if match is already completed`() {
-//    val matchId = scoreboard.startMatch("Team A", "Team B")
-//    scoreboard.finishMatch(matchId)
-//    val exception = assertThrows<NoSuchElementException> {
-//      scoreboard.finishMatch(matchId)
-//    }
-//    assertEquals("Match is already completed", exception.message)
-//  }
+
+  @Test
+  fun `should finish match successfully and return confirmation`() {
+    val matchId = scoreboard.startMatch("Team A", "Team B")
+    val finishMessage = scoreboard.finishMatch(matchId)
+    assertEquals("Match finished: Team A vs Team B", finishMessage)
+  }
+
+  @Test
+  fun `should fail to finish match if match does not exist`() {
+    val nonExistentMatchId = UUID.randomUUID()
+    val exception = assertThrows<NoSuchElementException> {
+      scoreboard.finishMatch(nonExistentMatchId)
+    }
+    assertEquals("Match does not exist", exception.message)
+  }
+
+  @Test
+  fun `should fail to finish match if match is already finished`() {
+    val matchId = scoreboard.startMatch("Team A", "Team B")
+    scoreboard.finishMatch(matchId)
+    val exception = assertThrows<NoSuchElementException> {
+      scoreboard.finishMatch(matchId)
+    }
+    assertEquals("Match is already finished", exception.message)
+  }
 //
 //  @Test
 //  fun `should get scoreboard`() {
